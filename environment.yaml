@@ -4,11 +4,11 @@ channels:
   - omnia
   - conda-forge
   - rdkit
+  - simonbray
 dependencies:
   - python=3.6
   - yank
   - rdkit=2018.03.2
   - pdbfixer
   - openforcefield=swang
-  - pip:
-    - duck-xchem
+  - duck-xchem

@@ -1,0 +1,37 @@
+{% set name = "duck-xchem" %}
+{% set version = "0.0.30" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/2e/db/985d09c402661a03de8404c36f887c83fbc1cefeb1194ffc33727d74e433/duck-xchem-0.0.30.tar.gz
+  sha256: 12d6557f7f945392559060a5c9ce79b6f86a947764433f24e2ae66bb7797c866
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  commands:
+    - frag_duck 2>&1 | grep -q 'ModuleNotFoundError'  # for now
+    - get_wqb 2>&1 | grep -q 'ModuleNotFoundError'
+
+about:
+  home: https://github.com/xchem/duck
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: 'Simple, fast, extensible JSON encoder/decoder for Python'
+
+extra:
+  recipe-maintainers:
+    - simonbray
