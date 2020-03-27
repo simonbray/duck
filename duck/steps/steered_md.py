@@ -30,7 +30,7 @@ def run_steered_md(
     steps_per_move = 200
     velocity = init_velocity * u.angstrom
     # Platform definition
-    platform = mm.Platform_getPlatformByName("Cpu")
+    platform = mm.Platform_getPlatformByName("CpuPlatform")
     platformProperties = {}
     #platformProperties["OpenCLPrecision"] = "mixed"
     #platformProperties["OpenCLDeviceIndex"] = gpu_id

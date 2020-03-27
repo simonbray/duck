@@ -28,7 +28,7 @@ def perform_md(
     MD_len = md_len * u.nanosecond
     sim_steps = round(MD_len / (0.002 * u.picosecond))
     # Platform definition
-    platform = mm.Platform_getPlatformByName("Cpu")
+    platform = mm.Platform_getPlatformByName("CpuPlatform")
     platformProperties = {}
     #platformProperties["OpenCLPrecision"] = "mixed"
     #platformProperties["OpenCLDeviceIndex"] = gpu_id

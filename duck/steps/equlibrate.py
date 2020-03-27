@@ -9,7 +9,7 @@ def do_equlibrate(force_constant_equilibrate=1.0,gpu_id=0):
     # Find the interations
     keyInteraction = cal_ints.find_interaction()
     # Platform definition
-    platform = mm.Platform_getPlatformByName("Cpu")
+    platform = mm.Platform_getPlatformByName("CpuPlatform")
     platformProperties = {}
     #platformProperties['OpenCLPrecision'] = 'mixed'
     #platformProperties["OpenCLDeviceIndex"] = gpu_id
