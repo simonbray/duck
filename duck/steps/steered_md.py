@@ -30,10 +30,10 @@ def run_steered_md(
     steps_per_move = 200
     velocity = init_velocity * u.angstrom
     # Platform definition
-    platform = mm.Platform_getPlatformByName("OpenCL")
+    platform = mm.Platform_getPlatformByName("Cpu")
     platformProperties = {}
-    platformProperties["OpenCLPrecision"] = "mixed"
-    platformProperties["OpenCLDeviceIndex"] = gpu_id
+    #platformProperties["OpenCLPrecision"] = "mixed"
+    #platformProperties["OpenCLDeviceIndex"] = gpu_id
     print("loading pickle")
     pickle_in = open("complex_system.pickle", "rb")
     combined_pmd = pickle.load(pickle_in)[0]

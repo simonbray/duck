@@ -28,10 +28,10 @@ def perform_md(
     MD_len = md_len * u.nanosecond
     sim_steps = round(MD_len / (0.002 * u.picosecond))
     # Platform definition
-    platform = mm.Platform_getPlatformByName("OpenCL")
+    platform = mm.Platform_getPlatformByName("Cpu")
     platformProperties = {}
-    platformProperties["OpenCLPrecision"] = "mixed"
-    platformProperties["OpenCLDeviceIndex"] = gpu_id
+    #platformProperties["OpenCLPrecision"] = "mixed"
+    #platformProperties["OpenCLDeviceIndex"] = gpu_id
     # Get indexes of heavy atoms in chunk
     Chunk_Heavy_Atoms = duck_stuff.getHeavyAtomsInSystem(combined_pmd)
     # Setting System
