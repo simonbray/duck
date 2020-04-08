@@ -1,9 +1,6 @@
 import numpy as np
 import os
 import argparse
-# import  matplotlib
-# matplotlib.use("agg")
-# import matplotlib.pyplot as plt
 
 def get_wqb_simple(file_duck_dat):
     f = open(file_duck_dat,'r')
@@ -27,15 +24,10 @@ def get_Wqb_value_all(input_dir):
             file_list.append(fil)
 
     Wqb_values = []
-    # plt.figure(figsize = (7,7))
     for fil in file_list:
         Wqb_data = get_wqb_simple(fil)
         Wqb_values.append(Wqb_data[0])
-    #     plt.plot(1*Wqb_data[1][:,0], Wqb_data[1][:,3]-Wqb_data[2])
 
-    # plt.xlabel('HB Distance (A)')
-    # plt.ylabel('Work (kcal/mol)')
-    # plt.savefig('wqb_plot.png')
     Wqb = min(Wqb_values)
     return(Wqb)
 
