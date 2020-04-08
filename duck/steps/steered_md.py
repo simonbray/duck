@@ -30,17 +30,22 @@ def run_steered_md(
     steps_per_move = 200
     velocity = init_velocity * u.angstrom
     # Platform definition
-    platform = mm.Platform_getPlatformByName("CUDA")
     platformProperties = {}
-    platformProperties["CudaPrecision"] = "double"
-    platformProperties["CudaDeviceIndex"] = gpu_id
+    if gpu_id != None:
+        platform = mm.Platform_getPlatformByName("CUDA")
+        platformProperties["CudaPrecision"] = "double"
+        platformProperties["CudaDeviceIndex"] = gpu_id
+    else:
+        platform = mm.Platform_getPlatformByName("CPU")
     platformProperties["DeterministicForces"] = 'true'
     print("loading pickle")
     pickle_in = open("complex_system.pickle", "rb")
-    combined_pmd = pickle.load(pickle_in)[0]
+    pkl = pickle.load(pickle_in)
+    combined_pmd = pkl[0]
     print(combined_pmd)
+    # keyInteraction = cal_ints.find_interaction()
+    keyInteraction = pkl[1:]
     pickle_in.close()
-    keyInteraction = cal_ints.find_interaction()
     print(keyInteraction)
     # Get indexes of heavy atoms in chunk
     Chunk_Heavy_Atoms = duck_stuff.getHeavyAtomsInSystem(combined_pmd)

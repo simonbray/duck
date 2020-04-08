@@ -9,10 +9,13 @@ def do_equlibrate(force_constant_equilibrate=1.0,gpu_id=0):
     # Find the interations
     keyInteraction = cal_ints.find_interaction()
     # Platform definition
-    platform = mm.Platform_getPlatformByName("CUDA")
     platformProperties = {}
-    platformProperties["CudaPrecision"] = "double"
-    platformProperties["CudaDeviceIndex"] = gpu_id
+    if gpu_id != None:
+        platform = mm.Platform_getPlatformByName("CUDA")
+        platformProperties["CudaPrecision"] = "double"
+        platformProperties["CudaDeviceIndex"] = gpu_id
+    else:
+        platform = mm.Platform_getPlatformByName("CPU")
     platformProperties["DeterministicForces"] = 'true'
     print("loading pickle")
     pickle_in=open('complex_system.pickle', 'rb')

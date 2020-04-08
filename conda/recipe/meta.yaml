@@ -1,0 +1,43 @@
+{% set name = "xchem-duck" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/galaxycomputationalchemistry/duck/archive/master.tar.gz
+  sha256: 3af8718a6f6ad63e5808471a301d8bed53cc3a66753f16ad23a288c944d6dacd
+
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    # - yank
+    - rdkit
+    # - pdbfixer
+    # - openforcefield
+    # - boto3
+    # - cudatoolkit
+
+test:
+  commands:
+    - frag_duck
+    - get_wqb
+
+about:
+  home: https://github.com/galaxycomputationalchemistry/duck
+  license: Apache 2.0
+  license_family: Apache
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - simonbray

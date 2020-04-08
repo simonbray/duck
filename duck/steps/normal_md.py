@@ -17,21 +17,28 @@ def perform_md(
     force_constant_chunk=0.1,
     gpu_id=0,
 ):
+
     if os.path.isfile(checkpoint_out_file):
         return
     print("loading pickle")
     pickle_in = open("complex_system.pickle", "rb")
-    combined_pmd = pickle.load(pickle_in)[0]
+    pkl = pickle.load(pickle_in)
+    combined_pmd = pkl[0]
     print(dir(combined_pmd))
-    key_interaction = cal_ints.find_interaction()
+    # key_interaction = cal_ints.find_interaction()
+    key_interaction = pkl[1:]
     pickle_in.close()
     MD_len = md_len * u.nanosecond
     sim_steps = round(MD_len / (0.002 * u.picosecond))
     # Platform definition
-    platform = mm.Platform_getPlatformByName("CUDA")
+    
     platformProperties = {}
-    platformProperties["CudaPrecision"] = "double"
-    platformProperties["CudaDeviceIndex"] = gpu_id
+    if gpu_id != None:
+        platform = mm.Platform_getPlatformByName("CUDA")
+        platformProperties["CudaPrecision"] = "double"
+        platformProperties["CudaDeviceIndex"] = gpu_id
+    else:
+        platform = mm.Platform_getPlatformByName("CPU")
     platformProperties["DeterministicForces"] = 'true'
     # Get indexes of heavy atoms in chunk
     Chunk_Heavy_Atoms = duck_stuff.getHeavyAtomsInSystem(combined_pmd)

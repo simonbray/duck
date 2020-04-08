@@ -1,8 +1,9 @@
 import numpy as np
-import os,sys
-import  matplotlib
-matplotlib.use("agg")
-import matplotlib.pyplot as plt
+import os
+import argparse
+# import  matplotlib
+# matplotlib.use("agg")
+# import matplotlib.pyplot as plt
 
 def get_wqb_simple(file_duck_dat):
     f = open(file_duck_dat,'r')
@@ -26,24 +27,49 @@ def get_Wqb_value_all(input_dir):
             file_list.append(fil)
 
     Wqb_values = []
-    plt.figure(figsize = (7,7))
+    # plt.figure(figsize = (7,7))
     for fil in file_list:
         Wqb_data = get_wqb_simple(fil)
         Wqb_values.append(Wqb_data[0])
-        plt.plot(1*Wqb_data[1][:,0], Wqb_data[1][:,3]-Wqb_data[2])
+    #     plt.plot(1*Wqb_data[1][:,0], Wqb_data[1][:,3]-Wqb_data[2])
 
-    plt.xlabel('HB Distance (A)')
-    plt.ylabel('Work (kcal/mol)')
-    plt.savefig('wqb_plot.png')
+    # plt.xlabel('HB Distance (A)')
+    # plt.ylabel('Work (kcal/mol)')
+    # plt.savefig('wqb_plot.png')
     Wqb = min(Wqb_values)
     return(Wqb)
 
 def main():
-    if len(sys.argv) > 1:
-        input_dir = sys.argv[1]
+    parser = argparse.ArgumentParser(description='Get WQB score from OpenDUck data')
+    parser.add_argument('-d', '--dir', help='Directory with location of OpenDUck data')
+    parser.add_argument('-l', '--ligand', help='Ligand in mol format')
+    parser.add_argument('-o', '--output', help='Ligand output in mol forma, with wqb value')
+
+    args = parser.parse_args()
+
+    if args.dir:
+        input_dir = args.dir
     else:
         input_dir = os.getcwd()
-    print(get_Wqb_value_all(input_dir))
+    
+    wqb_val = get_Wqb_value_all(input_dir)
+
+    if args.ligand:
+        with open(args.ligand) as f:
+            records = f.read().split('$$$$')
+            print(records)
+        if (len(records) > 2) or (len(records) == 2 and not records[1].isspace()):
+            # if there is more than 1 record; 2 is ok if the second is whitespace
+            raise IOError('The mol file contains multiple records.')
+        else:
+            wqb_str = "> <SCORE.DUCK_WQB>\n{}\n".format(wqb_val)
+            records[0] += wqb_str
+            print(records)
+            with open(args.output, 'w') as f:
+                f.write('$$$$'.join(records))
+    else:
+        print(wqb_val)
+
 
 if __name__ == '__main__':
     main()
