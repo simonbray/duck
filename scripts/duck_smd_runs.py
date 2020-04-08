@@ -4,7 +4,7 @@ import shutil
 try:
     from duck.steps.normal_md import perform_md
     from duck.steps.steered_md import run_steered_md
-except ModuleNotFoundError::
+except ModuleNotFoundError:
     print('Dependencies missing; check openmm, pdbfixer, and yank are installed from Omnia.')
 
 

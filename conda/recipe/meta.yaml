@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/galaxycomputationalchemistry/duck/archive/master.tar.gz
-  sha256: d22662f2f21bcad23761a509b939e71aaab55367e5dda0cdf9fd8c48013e6704
+  url: https://github.com/galaxycomputationalchemistry/duck/archive/conda.tar.gz
+  sha256: d0ea07eb1c2025e6861f3e18fa32756c537e18f74fb9eb26ff569ceec9d671ac
 
 
 build:
