@@ -22,7 +22,6 @@ def generateSMIRNOFFStructureRDK(ligand_file, ff='test_forcefields/smirnoff99Fro
 	ligand_system = force_field.create_openmm_system(ligand_topology, charge_from_molecules=[ligand_off_molecule])
 	ligand_topology = ligand_topology.to_openmm()  # needed for call to parmed
 	
-	# ligand_system = force_field.create_openmm_system(ligand_off_molecule.to_topology())
 	# Read in the coordinates of the ligand from the PDB file
 	Chem.MolToPDBFile(Chem.MolFromMolFile(ligand_file, removeHs=False), "ligand.pdb")
 	ligand_pdbfile = PDBFile("ligand.pdb")

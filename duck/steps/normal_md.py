@@ -25,7 +25,6 @@ def perform_md(
     pkl = pickle.load(pickle_in)
     combined_pmd = pkl[0]
     print(dir(combined_pmd))
-    # key_interaction = cal_ints.find_interaction()
     key_interaction = pkl[1:]
     pickle_in.close()
     MD_len = md_len * u.nanosecond

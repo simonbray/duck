@@ -70,8 +70,10 @@ def run_simulation(
     if not check_if_equlibrated("density.csv", 1):
         print("SYSTEM NOT EQUILIBRATED")
         sys.exit()
+    if params.get("just_equilib", False):
+        print("SYSTEM FENISHED EQULIBRATING")
+        return
     # Now do the MD
-    # remember start_dist
     for i in range(num_smd_cycles):
         if i == 0:
             md_start = "equil.chk"

@@ -43,7 +43,6 @@ def run_steered_md(
     pkl = pickle.load(pickle_in)
     combined_pmd = pkl[0]
     print(combined_pmd)
-    # keyInteraction = cal_ints.find_interaction()
     keyInteraction = pkl[1:]
     pickle_in.close()
     print(keyInteraction)
