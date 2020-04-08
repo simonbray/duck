@@ -20,18 +20,17 @@ requirements:
     - pip
   run:
     - python
-    - yank
+    # - yank
     - rdkit
-    - pdbfixer
-    - openforcefield
-    - boto3
+    # - pdbfixer
+    # - openforcefield
+    # - boto3
     # - cudatoolkit
 
 test:
   commands:
-    - frag_duck 2>&1 | grep -q IndexError
-  imports:
-    - duck
+    - frag_duck
+    - get_wqb
 
 about:
   home: https://github.com/galaxycomputationalchemistry/duck
