@@ -10,7 +10,6 @@ try:
 except ModuleNotFoundError::
     print('Dependencies missing; check openmm, pdbfixer, and yank are installed from Omnia.')
 
-
 def main():
     parser = argparse.ArgumentParser(description='Perform chunking in preparation for dynamic undocking')
     parser.add_argument('-p', '--protein', help='Apoprotein in PDB format')

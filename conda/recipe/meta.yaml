@@ -7,8 +7,7 @@ package:
 
 source:
   url: https://github.com/galaxycomputationalchemistry/duck/archive/master.tar.gz
-  sha256: d22662f2f21bcad23761a509b939e71aaab55367e5dda0cdf9fd8c48013e6704
-
+  sha256: 131b29cd24de90a1683bb6c1cd60281511862a506bfffba7fe850f59b7903152
 
 build:
   number: 0
