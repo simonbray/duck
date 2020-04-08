@@ -1,23 +1,11 @@
 import argparse
-# import os
 import shutil
 
-# from duck.steps.parametrize import prepare_system
-# from duck.utils.get_from_fragalysis import get_from_prot_code
-# from duck.utils.cal_ints import find_interaction
-# from duck.steps.prepare import prep_lig
-# from duck.steps.chunk import (
-#     chunk_with_amber,
-#     do_tleap,
-#     remove_prot_buffers_alt_locs,
-#     find_disulfides,
-# )
-# from duck.steps.equlibrate import do_equlibrate
-from duck.steps.normal_md import perform_md
-from duck.steps.steered_md import run_steered_md
-from duck.utils.check_system import check_if_equlibrated
-# import yaml, sys, os
-# from duck.utils.s3io import copy_directory_to_s3,download_file_from_s3
+try:
+    from duck.steps.normal_md import perform_md
+    from duck.steps.steered_md import run_steered_md
+except ModuleNotFoundError::
+    print('Dependencies missing; check openmm, pdbfixer, and yank are installed from Omnia.')
 
 
 def main():
